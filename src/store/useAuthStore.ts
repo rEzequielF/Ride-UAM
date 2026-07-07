@@ -13,3 +13,10 @@ interface AuthState{
     setProfile: (profile: UserProfile | null) => void;
     logout: () => void;
 }
+
+export const useAuthStore = create<AuthState>((set) => ({
+    profile: null,
+    isAuthenticated: false,
+    setProfile: (profile) => set({ profile, isAuthenticated: !!profile }),
+    logout: () => set({ profile: null, isAuthenticated: false }),
+}));
