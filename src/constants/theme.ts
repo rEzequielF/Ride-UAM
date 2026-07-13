@@ -1,7 +1,7 @@
 /* Estilos */
 
 export const COLORS = {
-    primary: "#004A99",      // Azul institucional UAM
+  primary: "#004A99",      // Azul institucional UAM
   background: '#FFFFFF',   // Blanco puro (Minimalismo)
   surface: '#F8F9FA',      // Gris muy claro para contenedores
   text: '#1A1A1A',         // Negro suave para mejor legibilidad
@@ -9,6 +9,9 @@ export const COLORS = {
   border: '#E9ECEF',       // Bordes sutiles
   danger: '#DC3545',       // Acciones destructivas/cancelaciones
   success: '#28A745',      // Confirmación
+  warning: '#FFC107',      // Pendientes o Alertas
+  disabled: '#D1D5DB',     // Estados inactivo
+  overlay: 'rgba(0, 0, 0, 0.4)', // Fondos de modales
 } as const;
 
 export const SPACING = {
@@ -26,18 +29,12 @@ export const RADIUS = {
 } as const;
 
 export const TYPOGRAPHY = {
-  fontSize: {
-    sm: 12,
-    md: 16,
-    lg: 20,
-    xl: 24,
-  },
-  fontWeight: {
-    regular: '400' as const,
-    medium: '500' as const,
-    bold: '700' as const,
-  },
-} as const;
+  h1: { fontSize: 32, fontWeight: '700' as const },
+  h2: { fontSize: 24, fontWeight: '700' as const },
+  body: { fontSize: 16, fontWeight: '400' as const },
+  bodyBold: { fontSize: 16, fontWeight: '600' as const },
+  caption: { fontSize: 12, fontWeight: '400' as const },
+} as const; 
 
 export const SHADOWS = {
   soft: {
@@ -47,4 +44,9 @@ export const SHADOWS = {
     shadowRadius: 8,
     elevation: 2, // Para Android
   },
+} as const;
+
+export const Z_INDEX = {
+  modal: 1000,
+  overlay: 900,
 } as const;
