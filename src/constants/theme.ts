@@ -12,6 +12,7 @@ export const COLORS = {
   warning: '#FFC107',      // Pendientes o Alertas
   disabled: '#D1D5DB',     // Estados inactivo
   overlay: 'rgba(0, 0, 0, 0.4)', // Fondos de modales
+  tint: '#004A99' // Bordes activos
 } as const;
 
 export const SPACING = {
