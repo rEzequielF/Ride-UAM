@@ -54,4 +54,62 @@ export const LoginScreen = ({ navigation }: Props) =>{
             }
         }
     };
+
+    return(
+        <Screen>
+            <KeyboardAvoidingView
+            behavior={Plataform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.container}
+            >
+                <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handle">
+                    <View style={styles.header}>
+                        <Text variant="h1">UAM Raid</Text>
+                        <Text variant="body" color="textSecondary" style={StyleSheet.subtitle}>
+                            Comparte tus viajes de forma segura dentro de la comunidad jaguar
+                        </Text>
+                    </View>
+
+                    <View style={styles.form}>
+                        <Input
+                        label="Correo institucional"
+                        placeholder="usuario@uamv.edu.ni"
+                        leftIcon="mail-outline"
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        autoComplete="email"
+                        value={email}
+                        onChangeText={setEmail}
+                        error={emailError || undefined}
+                        />
+
+                        <Input
+                        label="Contraseña"
+                        placeholder="••••••••"
+                        leftIcon="lock-closed-outline"
+                        rightIcon={secureText ? 'eye-off-outline' : 'eye-outline'}
+                        onRightIconPress={() => setSecureText(!secureText)}
+                        secureTextEntry={secureText}
+                        autoCapitalize="none"
+                        value={password}
+                        onChangeText={setPassword}
+                        error={passwordError || undefined}
+                        />
+
+                        {authError && (
+                            <Text variant="caption" color="danger" style={styles.globalError}>
+                                {authError}
+                            </Text>
+                        )}
+
+                        <Button
+                        label="Iniciar Sesion"
+                        onPress={handleLogin}
+                        loading={actionLoading}
+                        style={styles.Button}
+                        />
+                    </View>
+                </ScrollView>
+            </KeyboardAvoidingView>
+        </Screen>
+    )
 }
