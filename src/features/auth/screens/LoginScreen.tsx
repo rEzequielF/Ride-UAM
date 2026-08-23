@@ -18,7 +18,7 @@ export const LoginScreen = ({ navigation }: Props) =>{
     const [passwordError, setPasswordError] = useState<string | null>(null);
     const [secureText, setSecureText] = useState(true);
 
-    const handleLosing = async () => {
+    const handleLogin = async () => {
         // Resetear errores locales
         setEmailError(null);
         setPasswordError(null);
@@ -58,13 +58,13 @@ export const LoginScreen = ({ navigation }: Props) =>{
     return(
         <Screen>
             <KeyboardAvoidingView
-            behavior={Plataform.OS === 'ios' ? 'padding' : 'height'}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.container}
             >
                 <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handle">
                     <View style={styles.header}>
                         <Text variant="h1">UAM Raid</Text>
-                        <Text variant="body" color="textSecondary" style={StyleSheet.subtitle}>
+                        <Text variant="body" color="textSecondary" style={styles.subtitle}>
                             Comparte tus viajes de forma segura dentro de la comunidad jaguar
                         </Text>
                     </View>
@@ -107,9 +107,46 @@ export const LoginScreen = ({ navigation }: Props) =>{
                         loading={actionLoading}
                         style={styles.Button}
                         />
+                        
+                        <Button
+                        label="¿No tienes cuenta? Registrate"
+                        onPress={() => navigation.navigate('Register')}
+                        variant="ghost"
+                        style={styles.linkButton}
+                        />
                     </View>
                 </ScrollView>
             </KeyboardAvoidingView>
         </Screen>
-    )
-}
+    );
+};
+
+const styles = StyleSheet.create({
+    container:{
+        flex: 1,
+    },
+    scrollContent:{
+        flexGrow: 1,
+        justifyContent: 'center',
+        paddingVertical: SPACING.xl,
+    },
+    header:{
+        marginBottom: SPACING.xl,
+    },
+    subtitle:{
+        marginTop: SPACING.xs
+    },
+    form:{
+        width: '100%',
+    },
+    globalError:{
+        marginBottom: SPACING.md,
+        textAlign: 'center',
+    },
+    button:{
+        marginTop: SPACING.md,
+    },
+    linkButton:{
+        marginTop: SPACING.sm,
+    },
+});
