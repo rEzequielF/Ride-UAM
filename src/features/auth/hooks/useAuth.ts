@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { supabase } from '@/services/supabase';
 import { authService } from '../services/authService';
 import { useAuthStore } from '@/store/useAuthStore';
-import { AuthCredentials } from '../types/auth.types';
+import { SignInCredentials, SignUpCredentials } from '../types/auth.types';
 
 export const useAuth = () => {
     const{
@@ -46,7 +46,7 @@ export const useAuth = () => {
 
         initializeAuth();
 
-        // Cambios de autenticacion en tiempo real
+        // Suscripcion a cambios de autenticacion en tiempo real
         const { data: authListener } = supabase.auth.onAuthStateChange(
             async (_event, currentSession) => {
                 if (isMounted){
@@ -62,39 +62,43 @@ export const useAuth = () => {
         };
     }, [setAuthState, setIsLoading]);
 
-    const signIn = useCallback(async ({ email, password }: AuthCredentials) => {
-        try{
-            setActionLoading(true);
-            setError(null);
-            const data = await authService.signIn({ email, password });
-            setAuthState(data.session, data.user);
-        } catch (err: unknown){
-            if (err instanceof Error){
-                setError(err.message);
-                throw err;
+    const signIn = useCallback(
+        async ({ email, password }: SignInCredentials) => {
+            try{
+                setActionLoading(true);
+                setError(null);
+                const data = await authService.signIn({ email, password });
+                setAuthState(data.session, data.user);
+            } catch (err: unknown){
+                if (err instanceof Error){
+                    setError(err.message)
+                    throw err;
+                }
+            } finally{
+                setActionLoading(false);
             }
-        } finally{
-            setActionLoading(false);
-        }
-    }, [setAuthState]);
+        },
+        [setAuthState]
+    );
 
-    const signUp = useCallback(async ({ email, password }: AuthCredentials) => {
-        try{
-            setActionLoading(true);
-            setError(null);
-            const data = await authService.signUp({ email, password });
-            // Por si acaso: Si supabase va a querer confirmacion por correo data.session va a ser null
-            //Se actualiza el estado sin sesion activa obligada
-            setAuthState(data.session, data.user);
-        } catch (err: unknown){
-            if (err instanceof Error){
-                setError(err.message);
-                throw err;
+    const signUp = useCallback(
+        async ({ email, password, fullName }: SignUpCredentials) => {
+            try{
+                setActionLoading(true);
+                setError(null);
+                const data = await authService.signUp({ email, password, fullName });
+                setAuthState(data.session, data.user);
+            } catch (err:unknown){
+                if (err instanceof Error){
+                    setError(err.message);
+                    throw err;
+                }
+            } finally{
+                setActionLoading(false);
             }
-        } finally{
-            setActionLoading(false);
-        }
-    }, [setAuthState]);
+        },
+        [setAuthState]
+    );
 
     const signOut = useCallback(async () => {
         try{
@@ -102,13 +106,13 @@ export const useAuth = () => {
             setError(null);
             await authService.signOut();
             storeSignOut();
-        } catch (err: unknown){
+        } catch (err:unknown){
             if (err instanceof Error){
                 setError(err.message);
                 throw err;
             }
         } finally{
-            setActionLoading(false);
+            setActionLoading(false)
         }
     }, [storeSignOut]);
 
@@ -117,7 +121,7 @@ export const useAuth = () => {
             setActionLoading(true);
             setError(null);
             await authService.resetPassword(email);
-        } catch (err: unknown){
+        } catch(err:unknown){
             if (err instanceof Error){
                 setError(err.message);
                 throw err;

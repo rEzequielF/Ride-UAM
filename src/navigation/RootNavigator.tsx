@@ -5,12 +5,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/types/navigation';
 import { AuthNavigator } from './AuthNavigator';
 import { MainTabsNavigator } from './MainTabsNavigator';
+import { useAuth } from '@/features/auth/hooks/useAuth';
 import { useAuthStore } from '@/store/useAuthStore';
 import { COLORS, Screen } from '@/components/ui';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-// Pantalla Splash placeholder mientras se restaura la sesion
 const SplashScreen = () => (
     <Screen withPadding={false}>
         <View style={styles.splashContainer}>
@@ -20,13 +20,17 @@ const SplashScreen = () => (
 );
 
 export const RootNavigator = () => {
+    // Restauracion de sesion y listener de Supabase
+    useAuth();
+
+    // Lectura del estado global
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
     const isLoading = useAuthStore((state) => state.isLoading);
 
     if (isLoading){
         return(
             <NavigationContainer>
-                <SplashScreen />
+                <SplashScreen/>
             </NavigationContainer>
         );
     }
@@ -49,6 +53,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.background,
+        backgroundColor: COLORS.background
     },
 });

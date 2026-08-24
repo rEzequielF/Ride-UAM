@@ -1,3 +1,4 @@
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MainTabParamList } from '@/types/navigation';
 
@@ -10,4 +11,4 @@ export const MainTabsNavigator = () => (
         <Tab.Screen name="MisRides" component={() => <></>} />
         <Tab.Screen name="Perfil" component={() => <></>} />
     </Tab.Navigator>
-)
+);
