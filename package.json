@@ -1,0 +1,40 @@
+{
+  "name": "ride-uam",
+  "version": "1.0.0",
+  "description": "",
+  "main": "babel.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rEzequielF/Ride-UAM.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/rEzequielF/Ride-UAM/issues"
+  },
+  "homepage": "https://github.com/rEzequielF/Ride-UAM#readme",
+  "dependencies": {
+    "@react-navigation/bottom-tabs": "^7.18.17",
+    "@react-navigation/native": "^7.3.17",
+    "@react-navigation/native-stack": "^7.18.9",
+    "@supabase/supabase-js": "^2.112.3",
+    "expo": "^57.0.15",
+    "expo-secure-store": "~57.0.1",
+    "react": "19.2.3",
+    "react-native": "0.86.2",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "~4.26.0",
+    "react-native-url-polyfill": "^4.0.0",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@types/react": "~19.2.4",
+    "babel-plugin-module-resolver": "^5.0.3",
+    "typescript": "~6.0.3"
+  }
+}

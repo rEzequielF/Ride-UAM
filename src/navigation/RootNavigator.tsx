@@ -7,7 +7,8 @@ import { AuthNavigator } from './AuthNavigator';
 import { MainTabsNavigator } from './MainTabsNavigator';
 import { useAuth } from '@/features/auth/hooks/useAuth';
 import { useAuthStore } from '@/store/useAuthStore';
-import { COLORS, Screen } from '@/components/ui';
+import { Screen } from '@/constants/ui';
+import { COLORS } from '@/constants/theme';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

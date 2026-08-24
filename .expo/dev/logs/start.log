@@ -1,0 +1,24 @@
+{"_e":"root:init","_t":1787543537849,"format":"v0-jsonl","version":"57.0.17"}
+{"_e":"env:mode","_t":1787543537850,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1787543537855,"mode":"development","files":["../..\\..\\.env"],"env":{"EXPO_PUBLIC_SUPABASE_ANON_KEY":"anon key","EXPO_PUBLIC_SUPABASE_URL":"url"}}
+{"_e":"devserver:start","_t":1787543541256,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1787543541670,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1787543543813,"plugins":[]}
+{"_e":"metro:instantiate","_t":1787543551793,"atlas":false,"workers":8,"host":"::","port":8081}
+{"_e":"env:mode","_t":1787543585537,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"root:init","_t":1787543795503,"format":"v0-jsonl","version":"57.0.17"}
+{"_e":"env:mode","_t":1787543795504,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1787543795508,"mode":"development","files":["../..\\..\\.env"],"env":{"EXPO_PUBLIC_SUPABASE_ANON_KEY":"anon key","EXPO_PUBLIC_SUPABASE_URL":"url"}}
+{"_e":"devserver:start","_t":1787543795864,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1787543796329,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1787543796669,"plugins":[]}
+{"_e":"metro:instantiate","_t":1787543802643,"atlas":false,"workers":8,"host":"::","port":8081}
+{"_e":"metro:client_log","_t":1787543966321,"level":"error","data":["Project is incompatible with this version of Expo Go\n\nThis project requires a newer version of Expo Go.\n\nHow to fix this error:\nDownload the latest version of Expo Go from the Play Store."]}
+{"_e":"metro:bundling:started","_t":1787544269546,"id":"1","platform":"android","environment":null,"entry":"babel.config.js"}
+{"_e":"metro:bundling:progress","_t":1787544269546,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787544269549,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787544273615,"id":"1","progress":0.010000000000000002,"total":1,"current":1}
+{"_e":"metro:bundling:done","_t":1787544274694,"id":"1","total":1,"ms":5147.8945}
+{"_e":"metro:bundling:started","_t":1787544280240,"id":"2","platform":"android","environment":null,"entry":"babel.config.js"}
+{"_e":"metro:bundling:progress","_t":1787544280240,"id":"2","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1787544280246,"id":"2","total":1,"ms":5.6761}

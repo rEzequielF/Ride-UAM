@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Alert, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthStackParamList } from '@/types/navigation';
-import { Screen, Text, Input, Button } from '@/components/ui';
+import { Screen, Text, Input, Button } from '@/constants/ui';
 import { SPACING } from '@/constants/theme';
 import { useAuth } from '../hooks/useAuth';
 import { validateAndNormalizeEmail } from '../services/authService';
@@ -76,7 +76,7 @@ export const RegisterScreen = ({ navigation }: Props) => {
         if (!isValid) return;
 
         try{
-            await signUp({ email, password });
+            await signUp({ email, password, fullName });
 
             // Manejar respuesta de Supabase (con o sin confirmacion de correo)
             Alert.alert(
@@ -145,7 +145,7 @@ export const RegisterScreen = ({ navigation }: Props) => {
                         label="Confirmar Contraseña"
                         placeholder="********"
                         leftIcon="lock-closed-outline"
-                        righIcon={secureConfirmPassword ? 'eye-off-outline' : 'eye-outline'}
+                        rightIcon={secureConfirmPassword ? 'eye-off-outline' : 'eye-outline'}
                         onRightIconPress={() => setSecureConfirmPassword(!secureConfirmPassword)}
                         secureTextEntry={secureConfirmPassword}
                         autoCapitalize="none"

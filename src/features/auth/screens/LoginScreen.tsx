@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Alert, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthStackParamList } from '@/types/navigation';
-import { Screen, Text, Input, Button } from '@/components/ui';
+import { Screen, Text, Input, Button } from '@/constants/ui';
 import { SPACING } from '@/constants/theme';
 import { useAuth } from '../hooks/useAuth';
 import { validateAndNormalizeEmail } from '../services/authService';
@@ -61,7 +61,7 @@ export const LoginScreen = ({ navigation }: Props) =>{
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.container}
             >
-                <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handle">
+                <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
                     <View style={styles.header}>
                         <Text variant="h1">UAM Raid</Text>
                         <Text variant="body" color="textSecondary" style={styles.subtitle}>
@@ -105,7 +105,7 @@ export const LoginScreen = ({ navigation }: Props) =>{
                         label="Iniciar Sesion"
                         onPress={handleLogin}
                         loading={actionLoading}
-                        style={styles.Button}
+                        style={styles.button}
                         />
                         
                         <Button
