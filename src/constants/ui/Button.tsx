@@ -93,7 +93,7 @@ export const Button = ({
         ]}
         >
             {loading ? (
-                <ActivityIndicator color{COLORS[getTextColor()]} size="small" />
+                <ActivityIndicator color={COLORS[getTextColor()]} size="small" />
                 ) : (
                     <>
                     {icon && (

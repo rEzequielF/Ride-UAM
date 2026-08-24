@@ -4,18 +4,18 @@ import { COLORS, SPACING } from '@/constants/theme';
 
 interface ScreenProps{
     children: React.ReactNode;
-    withPadding?: booleand;
+    withPadding?: boolean;
 }
 
 export const Screen = ({  children, withPadding = true }: ScreenProps) => {
     return(
         <SafeAreaView style={styles.container}>
-            <StatusBar barStyle="darkcontent" backgroundCOlor={COLORS.background} />
+            <StatusBar barStyle="dark-content" backgroundColor={COLORS.background} />
         <KeyboardAvoidingView
-            behavior={Plataform.OS === 'ios' ? 'padding' : height}
-            style={StyleSheet.flex}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.flex}
         >
-            <View style={[StyleSheet.content, withPadding && { padding: SPACING.md }]}>
+            <View style={[styles.content, withPadding && { padding: SPACING.md }]}>
                 {children}
             </View>
         </KeyboardAvoidingView>

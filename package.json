@@ -2,7 +2,7 @@
   "name": "ride-uam",
   "version": "1.0.0",
   "description": "",
-  "main": "babel.config.js",
+  "main": "expo/AppEntry.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/rEzequielF/Ride-UAM#readme",
   "dependencies": {
+    "@expo/vector-icons": "^15.0.2",
     "@react-navigation/bottom-tabs": "^7.18.17",
     "@react-navigation/native": "^7.3.17",
     "@react-navigation/native-stack": "^7.18.9",

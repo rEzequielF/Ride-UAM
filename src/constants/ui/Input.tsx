@@ -18,6 +18,7 @@ interface InputProps extends TextInputProps{
     rightIcon?: keyof typeof Ionicons.glyphMap;
     onRightIconPress?: () => void;
     containerStyle?: ViewStyle;
+    disabled?: boolean;
 }
 
 export const Input = ({
@@ -113,7 +114,7 @@ export const Input = ({
             </View>
 
             {error ? (
-                <Text variant="caption" color="danger" style={stylest.feedbackText}>
+                <Text variant="caption" color="danger" style={styles.feedbackText}>
                     {error}
                 </Text>
             ) : helperText ? (
@@ -145,7 +146,7 @@ const styles = StyleSheet.create({
         flex: 1,
         height: '100%',
         color: COLORS.text,
-        fontSIze: 16,
+        fontSize: 16,
         paddingVertical: 0, // Centrado Vertical
     },
     leftIcon: {
