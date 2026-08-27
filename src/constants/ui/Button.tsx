@@ -82,7 +82,7 @@ export const Button = ({
         accessibilityState={{ disabled: isDisabled, busy: loading }}
         accessibilityLabel={accessibilityLabel || label}
         style={[
-            StyleSheet.base,
+            styles.base,
             {
                 backgroundColor: getBackgroundColor(),
                 borderColor: getBorderColor(),
