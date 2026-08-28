@@ -26,31 +26,31 @@ export const RideStatusBadge = ({ status }: RideStatusBadgeProps) => {
             case 'full':
                 return{
                     label: 'Completo',
-                    backgroundColor: COLORS.border,
+                    backgroundColor: COLORS.disabled,
                     textColor: 'textSecondary',
                 };
             case 'inProgress':
                 return{
-                    label: 'En Camino',
-                    backgroundColor: '#FFF8E1', // Amarillo suave
+                    label: 'En camino',
+                    backgroundColor: COLORS.surface,
                     textColor: 'warning',
                 };
             case 'completed':
                 return{
                     label: 'Finalizado',
-                    backgroundColor: '#E8F5E9', // Verde suave
+                    backgroundColor: COLORS.surface,
                     textColor: 'success',
                 };
             case 'cancelled':
                 return{
                     label: 'Cancelado',
-                    backgroundColor: '#FFEBEE', // Rojo suave
+                    backgroundColor: COLORS.surface,
                     textColor: 'danger',
                 };
             default:
                 return{
                     label: 'Desconocido',
-                    backgroundColor: COLORS.surface,
+                    backgroundColor: COLORS.success,
                     textColor: 'textSecondary',
                 };
         }

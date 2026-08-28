@@ -8,13 +8,17 @@ import{
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, SPACING, RADIUS } from '@/constants/theme';
-import { Screen, Text, Button } from '@/constants/ui';
+import { Screen, Text } from '@/constants/ui';
 import { Ride } from '../types/ride.types';
 import { mockRideService } from '../services/mockRideService';
 import { RideCard } from '../components/RideCard';
 
+const MOCK_USER_ID = 'usr-driver-1';
+const MOCK_USER_NAME = 'Carlos';
+
 export const HomeScreen = () => {
-    const [rides, setRides] = useState<Ride[]>([]);
+    const [availableRides, setAvailableRides] = useState<Ride[]>([]);
+    const [userRides, setUserRides] = useState<Ride[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -25,13 +29,17 @@ export const HomeScreen = () => {
             try{
                 setLoading(true);
                 setError(null);
-                const data = await mockRideService.getAvailableRides();
+                const [availableData, userData] = await Promise.all([
+                    mockRideService.getAvailableRides(),
+                    mockRideService.getUserRides(MOCK_USER_ID),
+                ]);
                 if (isMounted){
-                    setRides(data);
+                    setAvailableRides(availableData);
+                    setUserRides(userData);
                 }
             } catch (err: unknown){
                 if (isMounted){
-                    setError('Nose pudieron cargar los viajes disponibles');
+                    setError('No se pudieron cargar los viajes disponibles');
                 }
             } finally{
                 if (isMounted){
@@ -40,26 +48,31 @@ export const HomeScreen = () => {
             }
         };
 
+        fetchRides();
+
         return () => {
             isMounted = false;
         };
     }, []);
 
-    // proximo viaje asumido como el primer viaje en progreso o reservado
-    const nextRide = rides.find((r) => r.status === 'inProgress' || r.status === 'full');
-    // lista resumida para Home
-    const availableRides = rides.filter((r) => r.status === 'published').slice(0, 3);
+    // El contrato actual de RideStatus utiliza 'inProgress'.
+    const nextRide = userRides.find(
+        (ride) => ride.status === 'inProgress' || ride.status === 'full'
+    );
+    const availableRidesSummary = availableRides
+        .filter((ride) => ride.status === 'published')
+        .slice(0, 3);
 
     const handleSearchPress = () => {
         // navegar a Buscar cuando las rutas esten configuradas
     };
 
-    const CreatePress = () => {
-        // navegar a la pantalla Publicar Ride ''
+    const handleCreatePress = () => {
+        // TODO: navegar a Publicar ride cuando la ruta esté configurada.
     };
 
     const handleRidePress = (rideId: string) => {
-        // navegar a RideDetails ''
+        // TODO: navegar a los detalles cuando la ruta esté configurada.
     };
 
     return(
@@ -70,7 +83,7 @@ export const HomeScreen = () => {
             >
                 {/* Header de Bienvenida */}
                 <View style={styles.header}>
-                    <Text variant="h1">Bienvenido</Text>
+                    <Text variant="h1">Hola, {MOCK_USER_NAME} 👋</Text>
                     <Text variant="body" color="textSecondary" style={styles.subtitle}>
                         ¿A dónde vas hoy?
                     </Text>
@@ -91,7 +104,7 @@ export const HomeScreen = () => {
 
                     <TouchableOpacity
                     style={[styles.actionButton, styles.createAction]}
-                    onPress={handleSearchPress}
+                    onPress={handleCreatePress}
                     activeOpacity={0.8}
                     >
                         <Ionicons name="add-circle-outline" size={24} color={COLORS.background}/>
@@ -104,7 +117,7 @@ export const HomeScreen = () => {
                 {/* Tu proximo viaje */}
                 <View style={styles.section}>
                     <Text variant="h2" style={styles.sectionTitle}>
-                        Tu proximo viaje
+                        Tu próximo viaje
                     </Text>
 
                     {loading ? (
@@ -118,7 +131,7 @@ export const HomeScreen = () => {
                         <View style={styles.emptyCard}>
                             <Ionicons name="car-sport-outline" size={32} color={COLORS.textSecondary}/>
                             <Text variant="body" color="textSecondary" style={styles.emptyText}>
-                                No tienes viajes programados proximamente
+                                No tienes viajes programados próximamente
                             </Text>
                         </View>
                     )}
@@ -127,7 +140,7 @@ export const HomeScreen = () => {
                 {/* Rides Disponibles (resumen) */}
                 <View style={styles.section}>
                     <View style={styles.sectionHeader}>
-                        <Text variant="h2">Rides Disponibles</Text>
+                        <Text variant="h2">Rides disponibles</Text>
                    </View>
 
                     {loading ? (
@@ -140,8 +153,8 @@ export const HomeScreen = () => {
                     <Text variant="caption" color="danger">
                         {error}
                     </Text>
-                    ) : availableRides.length > 0 ? (
-                    availableRides.map((ride) => (
+                    ) : availableRidesSummary.length > 0 ? (
+                    availableRidesSummary.map((ride) => (
                     <RideCard
                     key={ride.id}
                     ride={ride}
